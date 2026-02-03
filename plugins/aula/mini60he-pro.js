@@ -9,10 +9,48 @@ export function DeviceType() { return "keyboard"; }
 export function ControllableParameters() {
 	return [
 		{"property":"shutdownColor", "group":"lighting", "label":"Shutdown Color", "min":"0", "max":"360", "type":"color", "default":"009bde"},
-		{"property":"LightingMode", "group":"lighting", "label":"Lighting Mode", "type":"combobox", "values":["Canvas", "Forced"], "default":"Canvas"},
+		{"property":"LightingMode", "group":"lighting", "label":"Lighting Mode", "type":"combobox", "values":lightingPresets, "default":"Canvas"},
 		{"property":"forcedColor", "group":"lighting", "label":"Forced Color", "min":"0", "max":"360", "type":"color", "default":"009bde"},
 	];
 }
+
+var hardwareMode = false;
+
+export function onLightingModeChanged() {
+	device.log("Lighting mode changed to " + LightingMode);
+	if (LightingMode == "Canvas") {
+		hardwareMode = false;
+		return
+	}
+
+	hardwareMode = true;
+}
+
+const lightingPresets = [
+	"Canvas",
+	"Forced", // TODO: Remove this and use the static Bright instead
+
+	// Aula modes, need to figure these out
+	"Static Bright",
+	"Single Point On",
+	"Single Point Off",
+	"Starry Sky",
+	"Snowfall",
+	"Floral Competition",
+	"Dynamic Breathing",
+	"Spectrum Cycle",
+	"Color Fountain",
+	"Colorful Interchange",
+	"Flowing with the Waves",
+	"Turning Peaks",
+	"One Touch to Fire",
+	"Two Birds with One Stone",
+	"Ripples Spread",
+	"Endless Flow",
+	"Layered Mountains",
+	"Gentle Rain and Wind",
+	"Back and Forth"
+]
 
 var vLedNames = [
 	"Esc",   "1", "2", "3", "4", "5", "6", "7", "8", "9", "0","-_", "=+", "Backspace",
@@ -143,8 +181,13 @@ export function LedNames() {}
 export function LedPositions() {}
 
 export function Render() {
+	if (hardwareMode == true) {
+		return
+	}
+
 	sendColors();
 	device.pause(1);
+	// device.log(lightingPreset);
 }
 
 export function Shutdown() {}
