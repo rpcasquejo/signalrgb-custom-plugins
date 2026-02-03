@@ -118,7 +118,6 @@ function sendColors(shutdown = false) {
 	formPacket(packet3, packet3Sequence);
 	formPacket(packet4, packet4Sequence);
 	formPacket(packet5, packet5Sequence);
-	formPacket(packet6, packet6Sequence);
 }
 
 const packet1 = [0xaa, 0x32, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00];
@@ -164,12 +163,6 @@ const packet5Sequence = [
 	13,27,40,52,60,
 	100,100,100,100,100,
 	100,100,100,100,
-]
-
-const packet6Sequence = [
-	100,100,100,100,100,
-	100,100,100,100,100,
-	100,100,100,100
 ]
 
 export function Initialize() {
