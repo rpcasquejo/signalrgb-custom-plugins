@@ -8,9 +8,17 @@ export function DefaultScale() { return 5.0; }
 export function DeviceType() { return "keyboard"; }
 export function ControllableParameters() {
 	return [
+		// TODO: Remove this and
 		{"property":"shutdownColor", "group":"lighting", "label":"Shutdown Color", "min":"0", "max":"360", "type":"color", "default":"009bde"},
-		{"property":"LightingMode", "group":"lighting", "label":"Lighting Mode", "type":"combobox", "values":lightingPresets, "default":"Canvas"},
+		// TODO: Remove this one and use Static Brights
 		{"property":"forcedColor", "group":"lighting", "label":"Forced Color", "min":"0", "max":"360", "type":"color", "default":"009bde"},
+		{"property":"LightingMode", "group":"lighting", "label":"Lighting Mode", "type":"combobox", "values":lightingPresets, "default":"Canvas"},
+
+		// hardware mode stuff
+		{"property":"hardwareColor", "group":"lighting", "label":"Hardware Mode Color", "type":"color", "default":"009bde"},
+		{"property":"hardwareBrightness", "group":"lighting", "label":"Hardware Mode Brightness", "min":"0", "max":"5", "type":"number", "default":"5"},
+		{"property":"hardwareColorful", "group":"lighting", "label":"Hardware Mode Random", "type":"boolean", "default":"1"},
+		{"property":"hardwareDirection", "group":"lighting", "label":"Hardware Mode Direction", "type":"combobox", "values":["Up/Left", "Down/Right"], "default":"Down/Right"},
 	];
 }
 
@@ -28,28 +36,28 @@ export function onLightingModeChanged() {
 
 const lightingPresets = [
 	"Canvas",
-	"Forced", // TODO: Remove this and use the static Bright instead
+	"Forced", // TODO: Remove this and use the Static Bright instead to save usb cycles
 
 	// Aula modes, need to figure these out
-	"Static Bright",
-	"Single Point On",
-	"Single Point Off",
-	"Starry Sky",
-	"Snowfall",
-	"Floral Competition",
-	"Dynamic Breathing",
-	"Spectrum Cycle",
-	"Color Fountain",
-	"Colorful Interchange",
-	"Flowing with the Waves",
-	"Turning Peaks",
-	"One Touch to Fire",
-	"Two Birds with One Stone",
-	"Ripples Spread",
-	"Endless Flow",
-	"Layered Mountains",
-	"Gentle Rain and Wind",
-	"Back and Forth"
+	"[HW Mode] Static Bright",
+	"[HW Mode] Single Point On",
+	"[HW Mode] Single Point Off",
+	"[HW Mode] Starry Sky",
+	"[HW Mode] Snowfall",
+	"[HW Mode] Floral Competition",
+	"[HW Mode] Dynamic Breathing",
+	"[HW Mode] Spectrum Cycle",
+	"[HW Mode] Color Fountain",
+	"[HW Mode] Colorful Interchange",
+	"[HW Mode] Flowing with the Waves",
+	"[HW Mode] Turning Peaks",
+	"[HW Mode] One Touch to Fire",
+	"[HW Mode] Two Birds with One Stone",
+	"[HW Mode] Ripples Spread",
+	"[HW Mode] Endless Flow",
+	"[HW Mode] Layered Mountains",
+	"[HW Mode] Gentle Rain and Wind",
+	"[HW Mode] Back and Forth"
 ]
 
 var vLedNames = [
